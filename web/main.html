@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Название страницы -->
+    <title>Plati Smart Search</title>
+
+    <script type="text/javascript" src="eel.js"></script>
+
+    <!-- Добавить лого во вкладку -->
+    <link rel="icon" type="image/png" href="plati_icon.png">
+
+    <!-- Импортировать CSS стили -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <div align="center" class="content">
+
+        <!-- Логотип -->
+        <img src="plati_icon.png" alt="icon" class="logo">
+
+        <!-- Заголовок -->
+        <h2>Plati Smart Search</h2>
+
+        <!-- Поле ввода -->
+        <input type="text" id="id_query" placeholder="Введите запрос"><br>
+
+        <!-- Кнопка -->
+        <button id="send_query">Найти </button>
+
+        <!-- Блок с результатами -->
+        <div id="search_result" class="search_result"></div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        async function send_query(){
+            let id_query = document.getElementById('id_query').value;
+            console.log(id_query)
+
+            let result = await eel.get_sorted_plati_goods(id_query)();
+
+            let search_result = document.getElementById('search_result')
+            search_result.innerHTML = "";
+
+            result.forEach(function(item) {
+                let div = document.createElement('div');
+
+                div.textContent = item.name;
+
+                search_result.appendChild(div);
+
+            });
+            document.getElementById('id_query').value = '';
+        }
+
+        $('#send_query').click(function(){
+            send_query();
+        });
+    </script>
+
+</body>
+
+
+</html>

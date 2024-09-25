@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+*{
+    font-family: 'Lato', sans-serif;
+}
+
+body{
+    background-color: #202020;
+    color: #ffffff;
+}
+
+.logo{
+    height: 50px;
+    width: 50px;
+}
+
+.content{
+    margin-top: 100px;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+input{
+    border: none;
+    width: 90%;
+    height: 40px;
+    border-radius: 100px;
+    padding-left: 10px;
+    background-color: #54626d;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+#send_query{
+    border: none;
+    cursor: pointer;
+    width: 70%;
+    height: 35px;
+    background-color: #364d60;
+    color: #ffffff;
+    margin-top: 10px;
+    border-radius: 100px;
+}
+
+.search_result{
+    margin-top: 30px;
+}
+
