@@ -1,26 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-*{
+* {
     font-family: 'Lato', sans-serif;
 }
 
-body{
+body {
     background-color: #202020;
     color: #ffffff;
 }
 
-.logo{
+.logo {
     height: 50px;
     width: 50px;
 }
 
-.content{
+.content {
     margin-top: 100px;
     box-sizing: border-box;
     padding: 20px;
 }
 
-input{
+input {
     border: none;
     width: 90%;
     height: 40px;
@@ -31,7 +31,7 @@ input{
     margin-bottom: 10px;
 }
 
-#send_query{
+#send_query {
     border: none;
     cursor: pointer;
     width: 70%;
@@ -42,7 +42,30 @@ input{
     border-radius: 100px;
 }
 
-.search_result{
+.search_result {
     margin-top: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    display: grid;
+    grid-gap: 20px;
 }
 
+.goodsBlock {
+    width: 200px;
+    height: 300px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 10px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.goodsBlock img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.goodsBlock h3 {
+    margin: 10px 0;
+}

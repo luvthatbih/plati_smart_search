@@ -37,27 +37,65 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
-        async function send_query(){
+        async function send_query() {
+
+            // Извлечь запрос из поля "id_query"
             let id_query = document.getElementById('id_query').value;
-            console.log(id_query)
 
-            let result = await eel.get_sorted_plati_goods(id_query)();
-
+            // Получить поле для вывода результатов + отчистить от прошлых
             let search_result = document.getElementById('search_result')
             search_result.innerHTML = "";
 
-            result.forEach(function(item) {
-                let div = document.createElement('div');
+            // Выполнить python функцию
+            let result = await eel.get_sorted_plati_goods(id_query)();
 
-                div.textContent = item.name;
+            // перебрать все значения из result
+            result.forEach(function (item) {
 
-                search_result.appendChild(div);
+                // Объект "Плитки"
+                let goodsBlock = document.createElement("div");
+                goodsBlock.className = "goodsBlock";
+
+                // Создаем элемент изображения для плитки
+                let imageGoods = document.createElement("img");
+                imageGoods.src = item.image;
+
+                // Создаем элемент ссылки по имени
+                let nameGoodsUrl = document.createElement('a');
+                nameGoodsUrl.textContent = item.name;
+                nameGoodsUrl.href = item.url;
+                // Обработчик клика для открытия в новом окне
+                nameGoodsUrl.addEventListener('click', function(event){
+                    event.preventDefault;
+                    window.open(item.url, "_blank", "width=800,height=600");
+                })
+
+                // Параграф цены
+                let rubPriceGoodsParagraph = document.createElement("p")
+                rubPriceGoodsParagraph.textContent = item.price_rur + '₽'
+
+                // Добавляем изображение, заголовок и параграф в плитку
+                goodsBlock.appendChild(imageGoods)
+                goodsBlock.appendChild(nameGoodsUrl)
+                goodsBlock.appendChild(rubPriceGoodsParagraph)
+
+                // Добавляем обработчик события клика для перехода по гиперссылке
+                goodsBlock.addEventListener('click', function () {
+                    window.location.href = item.url
+                    window.location.target = "_blank"
+                })
+
+                // Добавляем плитку в вывод
+                search_result.appendChild(goodsBlock);
 
             });
             document.getElementById('id_query').value = '';
+            // Добавить таблицу в блок вывода
         }
 
-        $('#send_query').click(function(){
+
+
+        $('#send_query').click(function () {
             send_query();
         });
     </script>
